@@ -27,8 +27,9 @@ fi
 module load intel/20.4
 module load cmake/3.22.2 
 
-echo "Where is the icpc compiler?"
-which icpc
+# echo "Where is the icpc compiler?"
+# which icpc
+# -> "/sw/comp/intel/compilers_and_libraries_2020.4.304/linux/bin/intel64/icpc"
 
 # [richel@rackham1 bin]$ pwd
 # /sw/comp/intel/compilers_and_libraries_2020.4.304/linux/bin
@@ -38,8 +39,9 @@ which icpc
 # Thread model: posix
 # InstalledDir: /sw/comp/intel/compilers_and_libraries_2020.4.304/linux/bin
 
-echo "Where is the icpx compiler?"
-which icpx
+# echo "Where is the icpx compiler?"
+# which icpx
+# -> cannot be found
 
 cmake -S . -B build \
            -DCMAKE_BUILD_TYPE="RelWithDebInfo" \
@@ -50,7 +52,9 @@ cmake -S . -B build \
            -DMKL_ROOT="/opt/intel/oneapi/mkl/latest" \
            -DTBB_ROOT="/opt/intel/oneapi/tbb/latest"
 
-# Cannot find this on Rackham, not in /sw/comp/intel/compilers_and_libraries_2020.4.304/linux
+# Rackham location
+source /sw/comp/intel/oneapi/setvars.sh
+# GitHub Actions location
 # source /opt/intel/oneapi/setvars.sh
 
 cmake --build build
