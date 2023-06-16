@@ -24,9 +24,8 @@ else
   exit 42
 fi
 
-module load gcc/13.1.0 
-module load cmake/3.22.2 
 module load intel/20.4
+module load cmake/3.22.2 
 
 # Create the folder, even if it already exists
 mkdir build
