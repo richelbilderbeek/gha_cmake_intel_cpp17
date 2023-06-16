@@ -27,11 +27,26 @@ fi
 module load intel/20.4
 module load cmake/3.22.2 
 
+cat /opt/intel/oneapi/setvars.sh
+
+cmake -S . -B build \
+           -DCMAKE_BUILD_TYPE="RelWithDebInfo" \
+           -DCMAKE_INSTALL_PREFIX=install \
+           -DCMAKE_CXX_COMPILER=icpx \
+           -DCMAKE_C_COMPILER=icx \
+           -DIntelDPCPP_DIR="/opt/intel/oneapi/compiler/latest/linux/cmake/SYCL" \
+           -DMKL_ROOT="/opt/intel/oneapi/mkl/latest" \
+           -DTBB_ROOT="/opt/intel/oneapi/tbb/latest"
+
+source /opt/intel/oneapi/setvars.sh
+cmake --build build
+./build/gha_cmake_intel_cpp17
+
 # Create the folder, even if it already exists
-mkdir build
-cd build
-rm -f CMakeCache.txt
-cmake ..
-cmake --build . --config=Release --target all -j 10
-cd ..
+#mkdir build
+#cd build
+#rm -f CMakeCache.txt
+#cmake ..
+#cmake --build . --config=Release --target all -j 10
+#cd ..
 
