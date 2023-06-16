@@ -37,7 +37,7 @@ jobs:
       - name: Install Intel components
         run: sudo apt install --yes intel-oneapi-compiler-dpcpp-cpp intel-oneapi-mkl-devel
 
-      - name: Show the common variables scritp
+      - name: Show the common variables script
         run: cat /opt/intel/oneapi/setvars.sh
 
       # Adapted from https://devmesh.intel.com/posts/991253/adding-intel-oneapi-toolkits-to-github-actions
