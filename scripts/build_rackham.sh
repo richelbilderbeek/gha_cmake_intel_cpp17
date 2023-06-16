@@ -48,9 +48,9 @@ cmake -S . -B build \
            -DCMAKE_INSTALL_PREFIX=install \
            -DCMAKE_CXX_COMPILER=icpc \
            -DCMAKE_C_COMPILER=icc \
-           -DIntelDPCPP_DIR="/opt/intel/oneapi/compiler/latest/linux/cmake/SYCL" \
-           -DMKL_ROOT="/opt/intel/oneapi/mkl/latest" \
-           -DTBB_ROOT="/opt/intel/oneapi/tbb/latest"
+           -DIntelDPCPP_DIR="/sw/comp/intel/oneapi/compiler/latest/linux/cmake/SYCL" \
+           -DMKL_ROOT="/sw/comp/intel/oneapi/mkl/latest" \
+           -DTBB_ROOT="/sw/comp/intel/oneapi/tbb/latest"
 
 # Rackham location
 source /sw/comp/intel/oneapi/setvars.sh
