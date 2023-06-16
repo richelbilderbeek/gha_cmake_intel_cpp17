@@ -19,11 +19,9 @@ if(DEFINED ENV{CLUSTER})
   # We need to set the compiler on a cluster ourselves,
   # from https://stackoverflow.com/a/45934279
   # (see also there for other (and more recommended) ways)
-  #set(CMAKE_C_COMPILER "/sw/comp/gcc/13.1.0_rackham/bin/gcc")
-  #set(CMAKE_CXX_COMPILER "/sw/comp/gcc/13.1.0_rackham/bin/g++")
-  #          -DCMAKE_CXX_COMPILER=icpx \
-  #          -DCMAKE_C_COMPILER=icx \
-  #include_directories()
+  set(CMAKE_C_COMPILER icx)
+  set(CMAKE_CXX_COMPILER icpx)
+  # include_directories()
 else()
   message("Not working on a cluster." )
 endif()

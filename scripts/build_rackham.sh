@@ -27,7 +27,11 @@ fi
 module load intel/20.4
 module load cmake/3.22.2 
 
-cat /opt/intel/oneapi/setvars.sh
+echo "Where is the compiler?"
+which icpx
+
+# Is not found
+# cat /opt/intel/oneapi/setvars.sh
 
 cmake -S . -B build \
            -DCMAKE_BUILD_TYPE="RelWithDebInfo" \
