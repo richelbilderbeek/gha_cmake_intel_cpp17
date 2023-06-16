@@ -2,7 +2,8 @@
 #SBATCH -p core
 #SBATCH -n 1
 #SBATCH -t 10:00
-#SBATCH -J build_rackham.log
+#SBATCH --job-name gha_cmake_intel_cpp17
+#SBATCH --output build_rackham.log
 #SBATCH --qos=short
 #
 # Build the project on Rackham, an UPPMAX computer cluster, see
