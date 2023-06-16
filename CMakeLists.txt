@@ -10,7 +10,10 @@ find_package(IntelSYCL REQUIRED)
 find_package(MKL REQUIRED)
 set(MKL_ROOT /opt/intel/oneapi/mkl/latest)
 
-# Rackham
+# C++17
+set(CMAKE_CXX_STANDARD 17)
+
+# Cluster things
 if(DEFINED ENV{CLUSTER})
   message("Working on cluster")
   # We need to set the compiler on a cluster ourselves,
@@ -18,14 +21,12 @@ if(DEFINED ENV{CLUSTER})
   # (see also there for other (and more recommended) ways)
   #set(CMAKE_C_COMPILER "/sw/comp/gcc/13.1.0_rackham/bin/gcc")
   #set(CMAKE_CXX_COMPILER "/sw/comp/gcc/13.1.0_rackham/bin/g++")
+  #          -DCMAKE_CXX_COMPILER=icpx \
+  #          -DCMAKE_C_COMPILER=icx \
   #include_directories()
 else()
-  message( FATAL_ERROR "Must run on a cluster, CMake will exit." )
+  message("Not working on a cluster." )
 endif()
-
-
-# C++17
-set(CMAKE_CXX_STANDARD 17)
 
 # Show compiler info
 message("Compiler ID: ${CMAKE_CXX_COMPILER_ID}")
