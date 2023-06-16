@@ -46,7 +46,7 @@ jobs:
         shell: bash
         run: |
           source /opt/intel/oneapi/setvars.sh
-            cmake -S . -B build \
+          cmake -S . -B build \
             -DCMAKE_BUILD_TYPE="RelWithDebInfo" \
             -DCMAKE_INSTALL_PREFIX=install \
             -DCMAKE_CXX_COMPILER=icpx \
