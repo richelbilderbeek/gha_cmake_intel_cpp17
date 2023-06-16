@@ -32,40 +32,13 @@ jobs:
           sudo echo "deb https://apt.repos.intel.com/oneapi all main" | sudo tee /etc/apt/sources.list.d/oneAPI.list
           sudo apt-get update
 
-      - name: Browse Intel components
-        run: apt-cache search intel-oneapi-
-
       # Only need intel-oneapi-compiler-dpcpp-cpp and intel-oneapi-mkl-devel, according to
       # https://devmesh.intel.com/posts/991253/adding-intel-oneapi-toolkits-to-github-actions
       - name: Install Intel components
         run: sudo apt install --yes intel-oneapi-compiler-dpcpp-cpp intel-oneapi-mkl-devel
-          #sudo apt install --yes intel-oneapi-compiler-dpcpp-cpp-common-2023.1.0
-          #sudo apt install --yes intel-oneapi-common-vars
-          #sudo apt install --yes intel-basekit
-          #sudo apt-get install --yes intel-oneapi-compiler-fortran
-          #sudo apt-get install --yes intel-oneapi-mkl
-          #sudo apt-get install --yes intel-oneapi-mpi
-          #sudo apt-get install --yes intel-oneapi-mpi-devel
 
       - name: Show the common variables scritp
         run: cat /opt/intel/oneapi/setvars.sh
-
-      #- name: Compile
-      #  run: |
-      #    source /opt/intel/oneapi/setvars.sh
-      #    printenv >> $GITHUB_ENV
-      #    icc --version
-      #    icpc --version
-      #    echo "Compile here"
-      #  # ifort test.f90 -o test_program
-      #  # mpiifort test2.f90 -o mpitest
-
-      #  #- name: "Test the code"
-      #  #  run: |
-      #  #    echo "Running the tests using the Intel oneapi fortran compiler"
-      #  #    cd tests/test01
-      #  #    mpirun -np 1  $HOME/work/reponame/reponame/mpitest
-      #  #    ./$HOME/work/reponame/reponame/test_program
 
       # Adapted from https://devmesh.intel.com/posts/991253/adding-intel-oneapi-toolkits-to-github-actions
       # icpx: warning: use of 'dpcpp' is deprecated and will be removed in a future release. Use 'icpx -fsycl' 
@@ -73,14 +46,14 @@ jobs:
         shell: bash
         run: |
           source /opt/intel/oneapi/setvars.sh
-           cmake -S . -B build \
-          -DCMAKE_BUILD_TYPE="RelWithDebInfo" \
-          -DCMAKE_INSTALL_PREFIX=install \
-          -DCMAKE_CXX_COMPILER=icpx \
-          -DCMAKE_C_COMPILER=icx \
-          -DIntelDPCPP_DIR="/opt/intel/oneapi/compiler/latest/linux/cmake/SYCL" \
-          -DMKL_ROOT="/opt/intel/oneapi/mkl/latest" \
-          -DTBB_ROOT="/opt/intel/oneapi/tbb/latest"
+            cmake -S . -B build \
+            -DCMAKE_BUILD_TYPE="RelWithDebInfo" \
+            -DCMAKE_INSTALL_PREFIX=install \
+            -DCMAKE_CXX_COMPILER=icpx \
+            -DCMAKE_C_COMPILER=icx \
+            -DIntelDPCPP_DIR="/opt/intel/oneapi/compiler/latest/linux/cmake/SYCL" \
+            -DMKL_ROOT="/opt/intel/oneapi/mkl/latest" \
+            -DTBB_ROOT="/opt/intel/oneapi/tbb/latest"
       
       # Adapted from https://devmesh.intel.com/posts/991253/adding-intel-oneapi-toolkits-to-github-actions
       - name: build
@@ -89,30 +62,8 @@ jobs:
           source /opt/intel/oneapi/setvars.sh
           cmake --build build
 
-
-      #- name: Set up CMake build folder for release mode, thanks https://stackoverflow.com/a/64719718
-      #  run: cmake -B build . -DCMAKE_BUILD_TYPE=Release 
-      #  env:
-      #    CC: icc
-      #    CXX: icpc
-
-      #- name: Run CMake
-      #  run: cmake --build build 
-      #  env:
-      #    CC: icc
-      #    CXX: icpc
-
       - name: Run the program
-        run: ./build/gha_cmake_intel_cpp17_gprof
-
-      - name: Produce the gprof log
-        run: gprof ./build/gha_cmake_intel_cpp17_gprof > gprof.log
-        env:
-          CC: icc
-          CXX: icpc
-
-      - name: Read the 100 top lines
-        run: head gprof.log -n 100
+        run: ./build/gha_cmake_intel_cpp17
 
 
 
