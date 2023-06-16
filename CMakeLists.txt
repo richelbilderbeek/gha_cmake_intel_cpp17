@@ -19,8 +19,8 @@ if(DEFINED ENV{CLUSTER})
   # We need to set the compiler on a cluster ourselves,
   # from https://stackoverflow.com/a/45934279
   # (see also there for other (and more recommended) ways)
-  set(CMAKE_C_COMPILER icx)
-  set(CMAKE_CXX_COMPILER icpx)
+  set(CMAKE_C_COMPILER /sw/comp/intel/compilers_and_libraries_2020.4.304/linux/bin/intel64/icc)
+  set(CMAKE_CXX_COMPILER /sw/comp/intel/compilers_and_libraries_2020.4.304/linux/bin/intel64/icpc)
   # include_directories()
 else()
   message("Not working on a cluster." )

@@ -27,22 +27,32 @@ fi
 module load intel/20.4
 module load cmake/3.22.2 
 
-echo "Where is the compiler?"
-which icpx
+echo "Where is the icpc compiler?"
+which icpc
 
-# Is not found
-# cat /opt/intel/oneapi/setvars.sh
+# [richel@rackham1 bin]$ pwd
+# /sw/comp/intel/compilers_and_libraries_2020.4.304/linux/bin
+# [richel@rackham1 bin]$ ./icpx --version
+# Intel(R) oneAPI DPC++ Compiler 2021.1 (2020.8.0.0827)
+# Target: x86_64-unknown-linux-gnu
+# Thread model: posix
+# InstalledDir: /sw/comp/intel/compilers_and_libraries_2020.4.304/linux/bin
+
+echo "Where is the icpx compiler?"
+which icpx
 
 cmake -S . -B build \
            -DCMAKE_BUILD_TYPE="RelWithDebInfo" \
            -DCMAKE_INSTALL_PREFIX=install \
-           -DCMAKE_CXX_COMPILER=icpx \
-           -DCMAKE_C_COMPILER=icx \
+           -DCMAKE_CXX_COMPILER=icpc \
+           -DCMAKE_C_COMPILER=icc \
            -DIntelDPCPP_DIR="/opt/intel/oneapi/compiler/latest/linux/cmake/SYCL" \
            -DMKL_ROOT="/opt/intel/oneapi/mkl/latest" \
            -DTBB_ROOT="/opt/intel/oneapi/tbb/latest"
 
-source /opt/intel/oneapi/setvars.sh
+# Cannot find this on Rackham, not in /sw/comp/intel/compilers_and_libraries_2020.4.304/linux
+# source /opt/intel/oneapi/setvars.sh
+
 cmake --build build
 ./build/gha_cmake_intel_cpp17
 
