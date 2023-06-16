@@ -5,7 +5,8 @@
 #SBATCH -J build_rackham.log
 #SBATCH --qos=short
 #
-# Build the project on Rackham.
+# Build the project on Rackham, an UPPMAX computer cluster, see
+# https://www.uppmax.uu.se/support/user-guides/rackham-user-guide/
 #
 # Usage:
 #
