@@ -25,5 +25,5 @@ Equally complex builds:
 
 Less complex builds:
 
- * [none]
+ * Build without `CMake`: [gha_intel_cpp17](https://github.com/richelbilderbeek/gha_intel_cpp17)
  
