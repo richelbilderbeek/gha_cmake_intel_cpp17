@@ -43,11 +43,10 @@ cmake -S . -B build
 #  -B build \
 #  -DCMAKE_BUILD_TYPE="RelWithDebInfo" \
 #  -DCMAKE_INSTALL_PREFIX=install \
-#  -DMKL_ROOT="/sw/comp/intel/oneapi/mkl/latest" \
 #  -DTBB_ROOT="/sw/comp/intel/oneapi/tbb/latest"
 
 
-
+#  -DMKL_ROOT="/sw/comp/intel/oneapi/mkl/latest" \ # Move these to CMakeLists.txt
 #  -DCMAKE_CXX_COMPILER=icpc \ # Move these to CMakeLists.txt
 #  -DCMAKE_C_COMPILER=icc \ # Move these to CMakeLists.txt
 

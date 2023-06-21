@@ -8,7 +8,6 @@ set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 list(APPEND CMAKE_MODULE_PATH "${IntelSYCL_DIR}")
 find_package(IntelSYCL REQUIRED)
 find_package(MKL REQUIRED)
-set(MKL_ROOT /opt/intel/oneapi/mkl/latest)
 
 # C++17
 set(CMAKE_CXX_STANDARD 17)
@@ -21,9 +20,13 @@ if(DEFINED ENV{CLUSTER})
   # (see also there for other (and more recommended) ways)
   set(CMAKE_C_COMPILER /sw/comp/intel/oneapi/compiler/2023.1.0/linux/bin/icx)
   set(CMAKE_CXX_COMPILER /sw/comp/intel/oneapi/compiler/2023.1.0/linux/bin/icpx)
-  # include_directories()
+  set(MKL_ROOT /sw/comp/intel/oneapi/mkl/latest)
+
+  #  -DTBB_ROOT="/sw/comp/intel/oneapi/tbb/latest"
+
 else()
   message("Not working on a cluster." )
+  set(MKL_ROOT /opt/intel/oneapi/mkl/latest)
 endif()
 
 # Show compiler info
