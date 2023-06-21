@@ -7,6 +7,7 @@ enable_language(CXX)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 list(APPEND CMAKE_MODULE_PATH "${IntelSYCL_DIR}")
 find_package(IntelSYCL REQUIRED)
+
 find_package(MKL REQUIRED)
 
 # C++17
@@ -36,6 +37,7 @@ message("Compiler ID: ${CMAKE_CXX_COMPILER_ID}")
 message("Compiler version: ${CMAKE_CXX_COMPILER_VERSION}")
 
 add_executable(gha_cmake_intel_cpp17 main.cpp)
+add_sycl_to_target(TARGET gha_cmake_intel_cpp17 SOURCES main.cpp)
 
 
 
