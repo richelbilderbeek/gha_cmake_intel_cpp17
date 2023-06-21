@@ -18,15 +18,17 @@ if(DEFINED ENV{CLUSTER})
   # We need to set the compiler on a cluster ourselves,
   # from https://stackoverflow.com/a/45934279
   # (see also there for other (and more recommended) ways)
-  set(CMAKE_C_COMPILER /sw/comp/intel/oneapi/compiler/2023.1.0/linux/bin/icx)
-  set(CMAKE_CXX_COMPILER /sw/comp/intel/oneapi/compiler/2023.1.0/linux/bin/icpx)
-  set(MKL_ROOT /sw/comp/intel/oneapi/mkl/latest)
+  set(CMAKE_C_COMPILER "/sw/comp/intel/oneapi/compiler/2023.1.0/linux/bin/icx")
+  set(CMAKE_CXX_COMPILER "/sw/comp/intel/oneapi/compiler/2023.1.0/linux/bin/icpx")
+  set(MKL_ROOT "/sw/comp/intel/oneapi/mkl/latest")
 
   #  -DTBB_ROOT="/sw/comp/intel/oneapi/tbb/latest"
 
 else()
   message("Not working on a cluster." )
-  set(MKL_ROOT /opt/intel/oneapi/mkl/latest)
+  set(MKL_ROOT "/opt/intel/oneapi/mkl/latest")
+
+
 endif()
 
 # Show compiler info
