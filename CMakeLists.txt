@@ -37,7 +37,9 @@ message("Compiler ID: ${CMAKE_CXX_COMPILER_ID}")
 message("Compiler version: ${CMAKE_CXX_COMPILER_VERSION}")
 
 add_executable(gha_cmake_intel_cpp17 main.cpp)
-add_sycl_to_target(TARGET gha_cmake_intel_cpp17 SOURCES main.cpp)
+
+# Adding this breaks the build, but it _is_ in the doc
+# add_sycl_to_target(TARGET gha_cmake_intel_cpp17 SOURCES main.cpp)
 
 
 
