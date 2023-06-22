@@ -41,6 +41,9 @@ jobs:
           components: |
             icx
 
+      - name: Build the project
+        run: ./scripts/build.sh
+
 #      - name: Add intel repo to apt
 #        run: |
 #          wget https://apt.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB
@@ -59,25 +62,25 @@ jobs:
 
       # Adapted from https://devmesh.intel.com/posts/991253/adding-intel-oneapi-toolkits-to-github-actions
       # icpx: warning: use of 'dpcpp' is deprecated and will be removed in a future release. Use 'icpx -fsycl' 
-      - name: configure
-        shell: bash
-        run: |
-          source /opt/intel/oneapi/setvars.sh
-          cmake -S . -B build \
-            -DCMAKE_BUILD_TYPE="RelWithDebInfo" \
-            -DCMAKE_INSTALL_PREFIX=install \
-            -DCMAKE_CXX_COMPILER=icpx \
-            -DCMAKE_C_COMPILER=icx \
-            -DIntelDPCPP_DIR="/opt/intel/oneapi/compiler/latest/linux/cmake/SYCL" \
-            -DMKL_ROOT="/opt/intel/oneapi/mkl/latest" \
-            -DTBB_ROOT="/opt/intel/oneapi/tbb/latest"
+#      - name: configure
+#        shell: bash
+#        run: |
+#          source /opt/intel/oneapi/setvars.sh
+#          cmake -S . -B build \
+#            -DCMAKE_BUILD_TYPE="RelWithDebInfo" \
+#            -DCMAKE_INSTALL_PREFIX=install \
+#            -DCMAKE_CXX_COMPILER=icpx \
+#            -DCMAKE_C_COMPILER=icx \
+#            -DIntelDPCPP_DIR="/opt/intel/oneapi/compiler/latest/linux/cmake/SYCL" \
+#            -DMKL_ROOT="/opt/intel/oneapi/mkl/latest" \
+#            -DTBB_ROOT="/opt/intel/oneapi/tbb/latest"
       
       # Adapted from https://devmesh.intel.com/posts/991253/adding-intel-oneapi-toolkits-to-github-actions
-      - name: build
-        shell: bash
-        run: |
-          source /opt/intel/oneapi/setvars.sh
-          cmake --build build
+#      - name: build
+#        shell: bash
+#        run: |
+#          source /opt/intel/oneapi/setvars.sh
+#          cmake --build build
 
       - name: Run the program
         run: ./build/gha_cmake_intel_cpp17
