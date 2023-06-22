@@ -24,18 +24,35 @@ jobs:
       - name: g++ must be removed. It is :-)
         run: g++ --version || true
 
-      - name: Add intel repo to apt
-        run: |
-          wget https://apt.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB
-          sudo apt-key add GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB
-          rm GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB
-          sudo echo "deb https://apt.repos.intel.com/oneapi all main" | sudo tee /etc/apt/sources.list.d/oneAPI.list
-          sudo apt-get update
+      - name: Remove llvm
+        run: sudo apt-get remove llvm llvm-*
+
+      - name: Remove clang
+        run: sudo apt-get remove clang clang-*
+
+      - name: clang++ must be removed. It is :-)
+        run: clang++ --version || true
+
+
+      # Install Intel
+      - uses: rscohn2/setup-oneapi@v0
+        with:
+          list: true
+          components: |
+            icx
+
+#      - name: Add intel repo to apt
+#        run: |
+#          wget https://apt.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB
+#          sudo apt-key add GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB
+#          rm GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB
+#          sudo echo "deb https://apt.repos.intel.com/oneapi all main" | sudo tee /etc/apt/sources.list.d/oneAPI.list
+#          sudo apt-get update
 
       # Only need intel-oneapi-compiler-dpcpp-cpp and intel-oneapi-mkl-devel, according to
       # https://devmesh.intel.com/posts/991253/adding-intel-oneapi-toolkits-to-github-actions
-      - name: Install Intel components
-        run: sudo apt install --yes intel-oneapi-compiler-dpcpp-cpp intel-oneapi-mkl-devel
+#      - name: Install Intel components
+#        run: sudo apt install --yes intel-oneapi-compiler-dpcpp-cpp intel-oneapi-mkl-devel
 
       - name: Show the common variables script
         run: cat /opt/intel/oneapi/setvars.sh
