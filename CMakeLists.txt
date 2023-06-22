@@ -21,8 +21,11 @@ if(DEFINED ENV{CLUSTER})
   # (see also there for other (and more recommended) ways)
   set(CMAKE_C_COMPILER "/sw/comp/intel/oneapi/compiler/2023.1.0/linux/bin/icx")
   set(CMAKE_CXX_COMPILER "/sw/comp/intel/oneapi/compiler/2023.1.0/linux/bin/icpx")
-  set(MKL_ROOT "/sw/comp/intel/oneapi/mkl/latest")
 
+  # This is in the doc, but not in rigid_body_dynamics
+  # set(MKL_ROOT "/sw/comp/intel/oneapi/mkl/latest")
+
+  # This is in the doc, but not in rigid_body_dynamics
   #  -DTBB_ROOT="/sw/comp/intel/oneapi/tbb/latest"
 
 else()
