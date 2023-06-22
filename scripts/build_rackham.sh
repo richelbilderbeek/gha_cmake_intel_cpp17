@@ -35,35 +35,7 @@ date
 # Use 'll /sw/comp/intel/oneapi/modulefiles' to see those secondary modules.
 module load gcc/13.1.0 cmake/3.22.2 intel-oneapi compiler
 
-# Let's see what this does
-cmake -S . -B build
-
-#
-#cmake -S . \
-#  -B build \
-#  -DCMAKE_BUILD_TYPE="RelWithDebInfo" \
-#  -DCMAKE_INSTALL_PREFIX=install \
-#  -DTBB_ROOT="/sw/comp/intel/oneapi/tbb/latest"
-
-
-#  -DMKL_ROOT="/sw/comp/intel/oneapi/mkl/latest" \ # Move these to CMakeLists.txt
-#  -DCMAKE_CXX_COMPILER=icpc \ # Move these to CMakeLists.txt
-#  -DCMAKE_C_COMPILER=icc \ # Move these to CMakeLists.txt
-
-
-# This folder does exists:
-#  -DIntelDPCPP_DIR="/sw/comp/intel/oneapi/compiler/2021.4.0/linux/cmake/SYCL" \
-
-# oneapi/compiler/2021.4.0/linux/cmake
-# 
-
-# Is an actual folder
-#   -DIntelDPCPP_DIR="/sw/comp/intel/oneapi/compiler/latest/linux/IntelSYCL" \
-
-# Does not exists
-#  -DIntelDPCPP_DIR="/sw/comp/intel/oneapi/compiler/latest/linux/cmake/SYCL" \
-
-cmake --build build
+./scripts/build.sh
 
 ./build/gha_cmake_intel_cpp17
 

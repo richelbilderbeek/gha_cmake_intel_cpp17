@@ -31,9 +31,8 @@ if(DEFINED ENV{CLUSTER})
 
 else()
   message("Not working on a cluster." )
-  set(MKL_ROOT "/opt/intel/oneapi/mkl/latest")
-
-
+  set(CMAKE_C_COMPILER "/opt/intel/oneapi/compiler/2023.1.0/linux/bin/icx")
+  set(CMAKE_CXX_COMPILER "/opt/intel/oneapi/compiler/2023.1.0/linux/bin/icpx")
 endif()
 
 # Show compiler info
