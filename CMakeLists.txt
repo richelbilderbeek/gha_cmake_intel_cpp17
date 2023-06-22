@@ -2,15 +2,6 @@ cmake_minimum_required(VERSION 3.10)
 
 project(gha_cmake_intel_cpp17)
 
-# In the docs, but not in rigid_body_dynamics
-#
-# Intel things, all from https://devmesh.intel.com/posts/991253/adding-intel-oneapi-toolkits-to-github-actions
-# enable_language(CXX)
-# set(CMAKE_POSITION_INDEPENDENT_CODE ON)
-# list(APPEND CMAKE_MODULE_PATH "${IntelSYCL_DIR}")
-# find_package(IntelSYCL REQUIRED)
-# find_package(MKL REQUIRED)
-
 # C++17
 set(CMAKE_CXX_STANDARD 17)
 
@@ -22,13 +13,6 @@ if(DEFINED ENV{CLUSTER})
   # (see also there for other (and more recommended) ways)
   set(CMAKE_C_COMPILER "/sw/comp/intel/oneapi/compiler/2023.1.0/linux/bin/icx")
   set(CMAKE_CXX_COMPILER "/sw/comp/intel/oneapi/compiler/2023.1.0/linux/bin/icpx")
-
-  # This is in the doc, but not in rigid_body_dynamics
-  # set(MKL_ROOT "/sw/comp/intel/oneapi/mkl/latest")
-
-  # This is in the doc, but not in rigid_body_dynamics
-  #  -DTBB_ROOT="/sw/comp/intel/oneapi/tbb/latest"
-
 else()
   message("Not working on a cluster." )
   set(CMAKE_C_COMPILER "/opt/intel/oneapi/compiler/2023.1.0/linux/bin/icx")
@@ -40,6 +24,3 @@ message("Compiler ID: ${CMAKE_CXX_COMPILER_ID}")
 message("Compiler version: ${CMAKE_CXX_COMPILER_VERSION}")
 
 add_executable(gha_cmake_intel_cpp17 main.cpp)
-
-# Adding this breaks the build, but it _is_ in the doc
-# add_sycl_to_target(TARGET gha_cmake_intel_cpp17 SOURCES main.cpp)
