@@ -65,5 +65,5 @@ cmake -S . -B build
 
 cmake --build build
 
--./build/gha_cmake_intel_cpp17
+./build/gha_cmake_intel_cpp17
 
